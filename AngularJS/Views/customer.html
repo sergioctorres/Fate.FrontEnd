@@ -1,0 +1,145 @@
+﻿<div class="container">
+    <div class="panel panel-info">
+        <div class="form-group">
+            <h2 class="text-left text-info">Clientes</h2>
+        </div>
+
+        <div class="form-group">
+            <div class="panel-body">
+                <button type="button" class="btn btn-primary" data-target="#AddCustomer" data-toggle="modal">Adicionar</button>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <table class="table table-responsive">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Nome</th>
+                        <th>Sobrenome</th>
+                        <th>CPF</th>
+                        <th>Data de Nascimento</th>
+                        <th>Idade</th>
+                        <th>Profissão</th>
+                        <th>Ação</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="customer in Customers">
+                        <td>{{customer.Id}}</td>
+                        <td>{{customer.Name}}</td>
+                        <td>{{customer.LastName}}</td>
+                        <td>{{customer.CPF}}</td>
+                        <td>{{customer.Birthday}}</td>
+                        <td>{{customer.Age}}</td>
+                        <td>{{customer.Occupation}}</td>
+                        <td style="width: 200px;">
+                            <a href="#" data-target="#EditCustomer" data-toggle="modal" class="btn btn-success" ng-click="updateCustomerById(customer)">Editar</a>
+                            <a href="#" data-target="#DeleteCustomer" data-toggle="modal" class="btn btn-danger" ng-click="deleteCustomerById(customer)">Excluir</a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="modal" id="AddCustomer" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="text-info">Adicionar Cliente</h3>
+                </div>
+                <div class="modal-body">
+                    <form class="form-horizontal" name="AddNewCustomerForm">
+                        <div class="form-group">
+                            <input class="form-control" readonly="readonly" name="id" type="hidden" placeholder="Id" />
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="name" ng-model="name" placeholder="Nome" />
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="lastName" ng-model="lastName" placeholder="Sobrenome" />
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="cpf" ng-model="cpf" placeholder="CPF" />
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="birthday" ng-model="birthday" placeholder="Data de Nascimento" />
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="age" ng-model="age" placeholder="Idade" />
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" type="text" name="occupation" ng-model="occupation" placeholder="Profissão" />
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="btnSave" data-dismiss="modal" ng-click="addCustomer()">Adicionar</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal" ng-click="clearData()">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" id="UpdateCustomer" role="dialog">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="text-warning">Atualizar Cliente</h3>
+                </div>
+                <div class="modal-body" style="margin-left: 20px">
+                    <form class="form-horizontal" name="UpdateCustomerForm">
+                        <div class="form-group">
+                            <input class="form-control" readonly="readonly" name="Id" ng-model="UpdatedId" type="hidden" placeholder="Id" />
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" name="Name" ng-model="UpdatedName" placeholder="Nome" />
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" name="LastName" ng-model="UpdatedLastName" placeholder="Sobrenome" />
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" name="CPF" ng-model="UpdatedCPF" placeholder="CPF" />
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" name="Birthday" ng-model="UpdatedBirthday" placeholder="Data de Nascimento" />
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" readonly="readonly" name="Idade" ng-model="UpdatedAge" type="hidden" placeholder="Idade" />
+                        </div>
+                        <div class="form-group">
+                            <input class="form-control" name="Occupation" ng-model="UpdatedOccupation" placeholder="Profissão" />
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-primary" id="btnUpdate" data-dismiss="modal" ng-click="updateCustomer()">Atualizar</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal" role="dialog" id="DeleteCustomer">
+        <div class="modal-dialog">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h3 class="text-info">Você tem certeza que deseja excluir o cliente?</h3>
+                </div>
+                <div class="modal-body">
+                    <div>
+                        <p>Id: {{UpdatedId}}</p>
+                        <p>Nome: {{UpdatedName}}</p>
+                        <p>Sobrenome: {{UpdatedLastName}}</p>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="deleteCustomerById(UpdatedId)">Excluir</button>
+                    <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
+
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
