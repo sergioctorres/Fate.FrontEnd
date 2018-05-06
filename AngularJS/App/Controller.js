@@ -115,3 +115,17 @@
     }
 });
 
+customerApp.controller('CustomerDetailsController', function ($scope, customerService, $routeParams) {
+    loadCustomer();
+
+    function loadCustomer() {
+        var customer = customerService.getCustomer($routeParams.id);
+
+        customer.then(function (d) {
+            $scope.Customer = d.data;
+        },
+            function () {
+                alert("Ocorreu um erro ao tentar carregar o Cliente");
+            });
+    }
+});

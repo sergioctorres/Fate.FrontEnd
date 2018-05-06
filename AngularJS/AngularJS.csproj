@@ -902,6 +902,7 @@
     <Content Include="Scripts\angular.min.js" />
     <Content Include="Views\about.html" />
     <Content Include="Views\customer.html" />
+    <Content Include="Views\customerDetails.html" />
     <Content Include="Web.config" />
   </ItemGroup>
   <ItemGroup>

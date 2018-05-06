@@ -4,13 +4,9 @@ var customerApp = angular.module('customers', ['ngRoute']);
 customerApp.config(['$routeProvider',
     function ($routeProvider) {
         $routeProvider.
-            when('/Add', {
-                templateUrl: 'Views/add.html',
-                controller: 'AddController'
-            }).
-            when('/Update', {
-                templateUrl: 'Views/update.html',
-                controller: 'UpdateController'
+            when('/CustomerDetails/:id', {
+                templateUrl: 'Views/customerDetails.html',
+                controller: 'CustomerDetailsController'
             }).
             when('/About', {
                 templateUrl: 'Views/about.html',
@@ -34,6 +30,10 @@ customerApp.controller("AboutController", function ($scope) {
     $scope.message = "Sobre";
 });
 
+customerApp.controller("CustomerDetailsController", function ($scope) {
+    $scope.message = "Detalhes de Cliente";
+});
+
 customerApp.controller("CustomerController", function ($scope) {
-    $scope.message = "Customer";
+    $scope.message = "Clientes";
 });

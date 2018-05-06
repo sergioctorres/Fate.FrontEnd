@@ -6,6 +6,10 @@
         return $http.get(urlBase + "Customers");
     }
 
+    this.getCustomer = function (customerId) {
+        return $http.get(urlBase + "Customers/" + customerId);
+    }
+
     this.addCustomer = function (customer) {
         var request = $http({
             method: 'post',
