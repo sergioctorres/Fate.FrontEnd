@@ -30,14 +30,6 @@ customerApp.config(['$locationProvider', function ($locationProvider) {
     $locationProvider.hashPrefix('');
 }]);
 
-customerApp.controller("UpdateController", function ($scope) {
-    $scope.message = "Editando Cliente";
-});
-
-customerApp.controller("AddController", function ($scope) {
-    $scope.message = "Adicionando Cliente";
-});
-
 customerApp.controller("AboutController", function ($scope) {
     $scope.message = "Sobre";
 });

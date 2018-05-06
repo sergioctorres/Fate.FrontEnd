@@ -1,15 +1,15 @@
 ﻿customerApp.service('customerService', function ($http) {
 
-    var urlBase = "http://localhost:0000/api";
+    var urlBase = "http://localhost:58535/api/";
 
     this.getAllCustomers = function () {
-        return $http.get(urlBase + "/Customer/GetAllCustomers");
+        return $http.get(urlBase + "Customers");
     }
 
     this.addCustomer = function (customer) {
         var request = $http({
             method: 'post',
-            url: urlBase + '/Customer/Add',
+            url: urlBase + 'Customers/Add',
             data: customer
         });
 
@@ -18,8 +18,8 @@
 
     this.updateCustomer = function (customer) {
         var request = $http({
-            method: 'post',
-            url: urlBase + '/Customer/Update',
+            method: 'put',
+            url: urlBase + 'Customers/' + customer.Id,
             data: customer
         });
 
@@ -27,6 +27,6 @@
     }
 
     this.deleteCustomer = function (customerId) {
-        return $http.post(urlBase + '/Customer/Delete/' + customerId)
+        return $http.delete(urlBase + 'Customers/' + customerId)
     }
 });

@@ -28,16 +28,16 @@
 
         addInfos.then(function (d) {
             if (d.data.success === true) {
-                loadCustomers();
                 alert("Cliente cadastrado com sucesso");
 
                 $scope.clearData();
 
-            } else { alert("Ocorreu um erro. Cliente não cadastrado"); }
-        },
-            function () {
+            } else {
                 alert("Ocorreu um erro. Cliente não cadastrado");
-            });
+            }
+
+            loadCustomers();
+        });
     }
 
     $scope.clearData = function () {
@@ -74,15 +74,15 @@
         var updateInfos = customerService.updateCustomer(customer);
         updateInfos.then(function (d) {
             if (d.data.success === true) {
-                loadCustomers();
                 alert("Cliente atualizado com sucesso");
                 $scope.clearUpdatedData();
             } else {
                 alert("Ocorreu um erro. Cliente não atualizado");
             }
-        }, function () {
-            alert("Ocorreu um erro. Cliente não atualizado");
+
+            loadCustomers();
         });
+
     }
 
     $scope.clearUpdatedData = function () {
@@ -96,16 +96,15 @@
     }
 
     $scope.deleteCustomer = function () {
-        var deleteInfos = customerService.deleteCustomer($scope.Id);
+        var deleteInfos = customerService.deleteCustomer($scope.UpdatedId);
         deleteInfos.then(function (d) {
             if (d.data.success === true) {
-                loadCustomers();
                 alert("Cliente excluído com sucesso");
             } else {
                 alert("Ocorreu um erro. Cliente não excluído")
             }
-        }, function () {
-            alert("Ocorreu um erro. Cliente não excluído");
+
+            loadCustomers();
         });
     }
 

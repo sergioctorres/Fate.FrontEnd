@@ -34,8 +34,8 @@
                         <td>{{customer.Age}}</td>
                         <td>{{customer.Occupation}}</td>
                         <td style="width: 200px;">
-                            <a href="#" data-target="#EditCustomer" data-toggle="modal" class="btn btn-success" ng-click="updateCustomerById(customer)">Editar</a>
-                            <a href="#" data-target="#DeleteCustomer" data-toggle="modal" class="btn btn-danger" ng-click="deleteCustomerById(customer)">Excluir</a>
+                            <button type="button" class="btn btn-success" data-target="#UpdateCustomer" data-toggle="modal" ng-click="updateCustomerById(customer)">Editar</button>
+                            <button type="button" class="btn btn-danger" data-target="#DeleteCustomer" data-toggle="modal" ng-click="deleteCustomerById(customer)">Excluir</button>
                         </td>
                     </tr>
                 </tbody>
@@ -135,7 +135,7 @@
                     </div>
                 </div>
                 <div class="modal-footer">
-                    <button type="button" class="btn btn-danger" data-dismiss="modal" ng-click="deleteCustomerById(UpdatedId)">Excluir</button>
+                    <button type="button" class="btn btn-danger" id="btnDelete" data-dismiss="modal" ng-click="deleteCustomer()">Excluir</button>
                     <button type="button" class="btn btn-default" data-dismiss="modal">Fechar</button>
 
                 </div>
