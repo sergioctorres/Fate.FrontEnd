@@ -6,6 +6,10 @@
         return $http.get(urlBase + "Customers");
     }
 
+    this.getAllOccupations = function () {
+        return $http.get(urlBase + "Occupations");
+    }
+
     this.getCustomer = function (customerId) {
         return $http.get(urlBase + "Customers/" + customerId);
     }

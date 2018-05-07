@@ -1,16 +1,22 @@
 ﻿customerApp.controller('CustomerController', function ($scope, customerService) {
     
     loadCustomers();
+    loadOccupations();
 
     function loadCustomers() {
         var listCustomers = customerService.getAllCustomers();
 
         listCustomers.then(function (d) {
             $scope.Customers = d.data;
-        },
-            function () {
-                alert("Ocorreu um erro ao tentar listar todos os Clientes");
-            });
+        });
+    }
+
+    function loadOccupations() {
+        var listOccupations = customerService.getAllOccupations();
+
+        listOccupations.then(function (d) {
+            $scope.Occupations = d.data;
+        });
     }
 
     $scope.addCustomer = function () {
@@ -21,7 +27,7 @@
             cpf: $scope.cpf,
             birthday: $scope.birthday,
             age: $scope.age,
-            occupation: $scope.occupation
+            occupationId: $scope.selectedOption.Id
         };
 
         var addInfos = customerService.addCustomer(customer);
@@ -31,9 +37,6 @@
                 alert("Cliente cadastrado com sucesso");
 
                 $scope.clearData();
-
-            } else {
-                alert("Ocorreu um erro. Cliente não cadastrado");
             }
 
             loadCustomers();
@@ -47,7 +50,7 @@
         $scope.cpf = '';
         $scope.birthday = '';
         $scope.age = '';
-        $scope.occupation = '';
+        $scope.occupationId = '';
     };
 
     $scope.updateCustomerById = function (customer) {
@@ -57,7 +60,7 @@
         $scope.UpdatedCPF = customer.CPF;
         $scope.UpdatedBirthday = customer.Birthday;
         $scope.UpdatedAge = customer.Age;
-        $scope.UpdatedOccupation = customer.Occupation;
+        $scope.UpdatedOccupationId = customer.OccupationId;
     }
 
     $scope.updateCustomer = function () {
@@ -68,7 +71,7 @@
             CPF: $scope.UpdatedCPF,
             Birthday: $scope.UpdatedBirthday,
             Age: $scope.UpdatedAge,
-            Occupation: $scope.UpdatedOccupation
+            OccupationId: $scope.selectedOption.Id
         };
 
         var updateInfos = customerService.updateCustomer(customer);
@@ -76,8 +79,6 @@
             if (d.data.success === true) {
                 alert("Cliente atualizado com sucesso");
                 $scope.clearUpdatedData();
-            } else {
-                alert("Ocorreu um erro. Cliente não atualizado");
             }
 
             loadCustomers();
@@ -92,7 +93,7 @@
         $scope.UpdatedCPF = '';
         $scope.UpdatedBirthday = '';
         $scope.UpdatedAge = '';
-        $scope.UpdatedOccupation = '';
+        $scope.UpdatedOccupationId = '';
     }
 
     $scope.deleteCustomer = function () {
@@ -100,8 +101,6 @@
         deleteInfos.then(function (d) {
             if (d.data.success === true) {
                 alert("Cliente excluído com sucesso");
-            } else {
-                alert("Ocorreu um erro. Cliente não excluído")
             }
 
             loadCustomers();
@@ -123,9 +122,6 @@ customerApp.controller('CustomerDetailsController', function ($scope, customerSe
 
         customer.then(function (d) {
             $scope.Customer = d.data;
-        },
-            function () {
-                alert("Ocorreu um erro ao tentar carregar o Cliente");
-            });
+        });
     }
 });

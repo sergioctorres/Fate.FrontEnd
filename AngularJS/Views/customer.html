@@ -70,10 +70,13 @@
                             <input class="form-control" type="text" name="birthday" ng-model="birthday" placeholder="Data de Nascimento" />
                         </div>
                         <div class="form-group">
-                            <input class="form-control" type="text" name="age" ng-model="age" placeholder="Idade" />
-                        </div>
-                        <div class="form-group">
-                            <input class="form-control" type="text" name="occupation" ng-model="occupation" placeholder="Profissão" />
+                            <!--<select class="form-control" ng-model="selectedOccupation">
+                                <option value="">Selecione a profissão...</option>
+                                <option ng-selected="occupation.Id" ng-repeat="occupation in Occupations" value="{{occupation.Id}}">{{occupation.Description}}</option>
+                            </select>-->
+                            <select class="form-control" ng-options="occupation.Description for occupation in Occupations" ng-model="selectedOption">
+                                <option value="">Selecione a profissão...</option>
+                            </select>
                         </div>
                     </form>
                 </div>
@@ -109,10 +112,12 @@
                             <input class="form-control" name="Birthday" ng-model="UpdatedBirthday" placeholder="Data de Nascimento" />
                         </div>
                         <div class="form-group">
-                            <input class="form-control" readonly="readonly" name="Age" ng-model="UpdatedAge" type="hidden" placeholder="Idade" />
+                            <input class="form-control" readonly="readonly" name="Age" ng-model="UpdatedAge" placeholder="Idade" />
                         </div>
                         <div class="form-group">
-                            <input class="form-control" name="Occupation" ng-model="UpdatedOccupation" placeholder="Profissão" />
+                            <select class="form-control" ng-options="occupation.Description for occupation in Occupations" ng-model="selectedOption">
+                                <option value="">Selecione a profissão...</option>
+                            </select>
                         </div>
                     </form>
                 </div>
